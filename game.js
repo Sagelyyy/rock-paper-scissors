@@ -2,7 +2,7 @@ let playerScore = 0;
 let computerScore = 0;
 
 
-function computerPlay(){
+function getComputerChoice(){
     let choice = Math.floor(Math.random()*2) + 1;
     switch (choice){
         case 0:
@@ -61,6 +61,7 @@ function playRound(playerSelection, computerSelection){
         playerScore ++
         return outcome
     }
+
 }
 
 
@@ -73,15 +74,26 @@ function getPlayerChoice(){
 
 function game () {
     let i = 0;
-    while (i <= 5) {
-        //console.log(i)
-        const computerSelection = computerPlay();
-        //const playerSelection = getPlayerChoice();
-        const playerSelection = "rock";
+    playerScore = 0;
+    computerScore = 0;
+    while (i < 5) {
+        const computerSelection = getComputerChoice();
+        const playerSelection = getPlayerChoice();
         console.log(playRound(playerSelection, computerSelection));
-        ++i
-        console.log(playerScore);
-        console.log(computerScore);
+        if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors") {
+            i++
+            console.log("Your score is: " + playerScore);
+            console.log("The computers score is: " +computerScore);
+        } else {
+            console.log("Please choose a valid input!")
+        }
+    }
+    if(playerScore > computerScore){
+        console.log("You win!")
+    } else if (playerScore == computerScore) {
+        console.log("You tied the computer!")
+    } else {
+        console.log("You lose!")
     }
 }
 
