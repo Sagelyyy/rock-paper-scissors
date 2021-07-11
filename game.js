@@ -2,6 +2,22 @@ let playerScore = 0;
 let computerScore = 0;
 
 
+const rockBtn = document.querySelector('#rock');
+rockBtn.addEventListener('click', () => {
+    playRound('rock',getComputerChoice())
+});
+
+const paperBtn = document.querySelector('#paper');
+paperBtn.addEventListener('click', () => {
+    playRound('paper',getComputerChoice())
+});
+
+const scissorsBtn = document.querySelector('#scissors');
+scissorsBtn.addEventListener('click', () => {
+    playRound('scissors',getComputerChoice())
+});
+
+
 function getComputerChoice(){
     let choice = Math.floor(Math.random()*2) + 1;
     switch (choice){
@@ -21,45 +37,54 @@ function playRound(playerSelection, computerSelection){
     let outcome = "";
     if (playerSelection == "rock" && computerSelection == "rock"){
         outcome = "You Tie! Rock and Rock!"
-        return outcome
+        console.log(outcome)
+        return
     }
     if (playerSelection == "rock" && computerSelection == "paper") {
         outcome = "You lose! Paper beats Rock!"
         computerScore ++
-        return outcome
+        console.log(outcome)
+        return
     }
     if (playerSelection == "rock" && computerSelection == "scissors") {
         outcome = "You win! Rock beats Scissors!"
         playerScore ++
-        return outcome
+        console.log(outcome)
+        return
     }
     if (playerSelection == "paper" && computerSelection == "paper") {
         outcome = "You Tie! Paper and Paper!"
-        return outcome
+        console.log(outcome)
+        return
     }
     if (playerSelection == "paper" && computerSelection == "rock") {
         outcome = "You win! Paper beats Rock!"
         playerScore ++
-        return outcome
+        console.log(outcome)
+        return
     }
     if (playerSelection == "paper" && computerSelection == "scissors") {
         outcome = "You lose! Scissors beats Paper!"
         computerScore ++
-        return outcome
+        console.log(outcome)
+        return
     }
     if (playerSelection == "scissors" && computerSelection == "scissors") {
         outcome = "You Tie! Scissors and Scissors!"
-        return outcome
+        console.log(outcome)
+        return
     }
     if (playerSelection == "scissors" && computerSelection == "rock") {
         outcome = "You lose! Rock beats Scissors!"
         computerScore ++
-        return outcome
+        console.log(outcome)
+        return
     }
     if (playerSelection == "scissors" && computerSelection == "paper") {
         outcome = "You win! Scissors beats Paper!"
         playerScore ++
-        return outcome
+        console.log(outcome)
+        return
     }
 
 }
