@@ -93,7 +93,7 @@ function getComputerChoice(){
 function createRetryButton(){
     const retryBtn = document.querySelector('.retry');
     retryBtn.addEventListener('click', () => {
-        newGame()
+        newGame(), playerScore = 0, computerScore = 0
     });
 }
 
@@ -129,44 +129,53 @@ function newGame() {
 function playRound(playerSelection, computerSelection){
     if (playerSelection == "rock" && computerSelection == "rock"){
         result.textContent = "Tie! Rock and Rock"
+        endGame()
         return
     }
     if (playerSelection == "rock" && computerSelection == "paper") {
         result.textContent = "You lose! Paper beats Rock!"
         pcScore.textContent = ++computerScore
+        endGame()
         return
     }
     if (playerSelection == "rock" && computerSelection == "scissors") {
         result.textContent = "You win! Rock beats Scissors!"
         humanScore.textContent = ++ playerScore
+        endGame()
         return
     }
     if (playerSelection == "paper" && computerSelection == "paper") {
         result.textContent = "You Tie! Paper and Paper!"
+        endGame()
         return
     }
     if (playerSelection == "paper" && computerSelection == "rock") {
         result.textContent = "You win! Paper beats Rock!"
         humanScore.textContent = ++ playerScore
+        endGame()
         return
     }
     if (playerSelection == "paper" && computerSelection == "scissors") {
         result.textContent = "You lose! Scissors beats Paper!"
         pcScore.textContent = ++computerScore
+        endGame()
         return
     }
     if (playerSelection == "scissors" && computerSelection == "scissors") {
         result.textContent = "You Tie! Scissors and Scissors!"
+        endGame()
         return
     }
     if (playerSelection == "scissors" && computerSelection == "rock") {
         result.textContent = "You lose! Rock beats Scissors!"
         pcScore.textContent = ++computerScore
+        endGame()
         return
     }
     if (playerSelection == "scissors" && computerSelection == "paper") {
         result.textContent = "You win! Scissors beats Paper!"
         humanScore.textContent = ++ playerScore
+        endGame()
         return
     }
 
