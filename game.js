@@ -8,14 +8,17 @@ gameInfo.classList.add('content')
 gameInfo.style.paddingTop = '20px';
 gameInfo.style.bottom = '-20%'
 container.appendChild(gameInfo);
+
 const title = document.createElement('h1');
 title.style.fontWeight = 'strong';
 title.style.textAlign = 'center';
 title.textContent = "Man vs Computer."
+
 const result = document.createElement('h2');
 result.style.fontWeight = 'strong';
 result.style.textAlign = 'center';
 result.textContent = ""
+
 const humanScore = document.createElement('p');
 humanScore.style.position = 'absolute';
 humanScore.style.left = '120px'
@@ -23,6 +26,7 @@ humanScore.style.fontWeight = 'strong';
 humanScore.style.paddingLeft = '5%';
 humanScore.style.fontSize = '86px';
 humanScore.textContent = playerScore
+
 const pcScore = document.createElement('p');
 pcScore.style.position = 'absolute';
 pcScore.style.right = '120px'
@@ -30,28 +34,46 @@ pcScore.style.fontWeight = 'strong';
 pcScore.style.paddingRight = '5%';
 pcScore.style.fontSize = '86px';
 pcScore.textContent = computerScore
+
+const retry = document.createElement('button');
+retry.classList.add('retry')
+retry.style.position = 'absolute';
+retry.style.right = '35%'
+retry.style.left = '35%'
+retry.style.bottom = '35%'
+retry.style.fontWeight = 'strong';
+retry.style.fontSize = '86px';
+retry.style.height = '100px'
+retry.textContent = 'New game?'
+
+
 gameInfo.appendChild(humanScore)
 gameInfo.appendChild(pcScore)
 gameInfo.appendChild(title)
 gameInfo.appendChild(result)
 
 
+let playerSelection;
+// setting up the buttons and hooking them in to the document
 
 
 const rockBtn = document.querySelector('#rock');
 rockBtn.addEventListener('click', () => {
-    playRound('rock',getComputerChoice())
+    playerSelection = 'rock', gameStatus()
 });
 
 const paperBtn = document.querySelector('#paper');
 paperBtn.addEventListener('click', () => {
-    playRound('paper',getComputerChoice())
+    playerSelection = 'paper', gameStatus()
 });
 
 const scissorsBtn = document.querySelector('#scissors');
 scissorsBtn.addEventListener('click', () => {
-    playRound('scissors',getComputerChoice())
+    playerSelection = 'scissors', gameStatus()
 });
+
+
+
 
 
 function getComputerChoice(){
@@ -68,9 +90,43 @@ function getComputerChoice(){
     }
 }
 
+function createRetryButton(){
+    const retryBtn = document.querySelector('.retry');
+    retryBtn.addEventListener('click', () => {
+        newGame()
+    });
+}
+
+function gameStatus(){
+    if(playerScore < 5 && computerScore < 5){
+        playRound(playerSelection, getComputerChoice())
+    } else {
+        endGame()
+    }
+}
+
+function endGame(){
+    if (playerScore == 5) {
+        result.textContent = "You win the Game!"
+        gameInfo.appendChild(retry)
+        createRetryButton()
+
+    }
+    if (computerScore == 5) {
+        result.textContent = "You Lose the Game!"
+        gameInfo.appendChild(retry)
+        createRetryButton()
+    }
+}
+
+function newGame() {
+    pcScore.textContent = 0;
+    humanScore.textContent = 0;
+    gameInfo.removeChild(retry)
+
+}
 
 function playRound(playerSelection, computerSelection){
-    let outcome = "";
     if (playerSelection == "rock" && computerSelection == "rock"){
         result.textContent = "Tie! Rock and Rock"
         return
@@ -82,7 +138,7 @@ function playRound(playerSelection, computerSelection){
     }
     if (playerSelection == "rock" && computerSelection == "scissors") {
         result.textContent = "You win! Rock beats Scissors!"
-        playerScore ++
+        humanScore.textContent = ++ playerScore
         return
     }
     if (playerSelection == "paper" && computerSelection == "paper") {
@@ -91,7 +147,7 @@ function playRound(playerSelection, computerSelection){
     }
     if (playerSelection == "paper" && computerSelection == "rock") {
         result.textContent = "You win! Paper beats Rock!"
-        playerScore ++
+        humanScore.textContent = ++ playerScore
         return
     }
     if (playerSelection == "paper" && computerSelection == "scissors") {
@@ -110,45 +166,8 @@ function playRound(playerSelection, computerSelection){
     }
     if (playerSelection == "scissors" && computerSelection == "paper") {
         result.textContent = "You win! Scissors beats Paper!"
-        playerScore ++
+        humanScore.textContent = ++ playerScore
         return
     }
 
 }
-
-
-function getPlayerChoice(){
-    let playerChoice = prompt("Please choose Rock, Paper, or Scissors!");
-    playerChoice = playerChoice[0].toLowerCase() + playerChoice.substring(1).toLowerCase();
-    return playerChoice;
-  }
-
-
-function game () {
-    let i = 0;
-    playerScore = 0;
-    computerScore = 0;
-    while (i < 5) {
-        const computerSelection = getComputerChoice();
-        const playerSelection = getPlayerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-        if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors") {
-            i++
-            console.log("Your score is: " + playerScore);
-            console.log("The computers score is: " +computerScore);
-        } else {
-            console.log("Please choose a valid input!")
-        }
-    }
-    if(playerScore > computerScore){
-        console.log("You win!")
-    } else if (playerScore == computerScore) {
-        console.log("You tied the computer!")
-    } else {
-        console.log("You lose!")
-    }
-}
-
-
-
-
