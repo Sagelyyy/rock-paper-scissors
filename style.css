@@ -1,0 +1,36 @@
+
+html { width:100%; height:100%; margin:0; padding:0; }
+body { width:100%; height:100%; margin:0; padding:0; }
+
+
+
+.container {
+    position: relative;
+    margin-top: 12%;
+    min-width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.item {
+    
+}
+
+button{
+    font-size: 25px;
+    width: 600px;
+    height: 90px;
+    background-color: lightgray;
+    border: none;
+    cursor: pointer;
+    color: gray;
+}
+
+button:hover {
+    box-shadow: 1px 1px 1px gray;
+    border-color: lightgray;
+    border-radius: 5px;
+    color: black;
+}
+

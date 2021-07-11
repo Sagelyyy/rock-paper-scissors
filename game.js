@@ -1,6 +1,42 @@
 let playerScore = 0;
 let computerScore = 0;
 
+const container = document.querySelector('#gameResults');
+
+const gameInfo = document.createElement('div');
+gameInfo.classList.add('content')
+gameInfo.style.paddingTop = '20px';
+gameInfo.style.bottom = '-20%'
+container.appendChild(gameInfo);
+const title = document.createElement('h1');
+title.style.fontWeight = 'strong';
+title.style.textAlign = 'center';
+title.textContent = "Man vs Computer."
+const result = document.createElement('h2');
+result.style.fontWeight = 'strong';
+result.style.textAlign = 'center';
+result.textContent = ""
+const humanScore = document.createElement('p');
+humanScore.style.position = 'absolute';
+humanScore.style.left = '120px'
+humanScore.style.fontWeight = 'strong';
+humanScore.style.paddingLeft = '5%';
+humanScore.style.fontSize = '86px';
+humanScore.textContent = playerScore
+const pcScore = document.createElement('p');
+pcScore.style.position = 'absolute';
+pcScore.style.right = '120px'
+pcScore.style.fontWeight = 'strong';
+pcScore.style.paddingRight = '5%';
+pcScore.style.fontSize = '86px';
+pcScore.textContent = computerScore
+gameInfo.appendChild(humanScore)
+gameInfo.appendChild(pcScore)
+gameInfo.appendChild(title)
+gameInfo.appendChild(result)
+
+
+
 
 const rockBtn = document.querySelector('#rock');
 rockBtn.addEventListener('click', () => {
@@ -36,54 +72,45 @@ function getComputerChoice(){
 function playRound(playerSelection, computerSelection){
     let outcome = "";
     if (playerSelection == "rock" && computerSelection == "rock"){
-        outcome = "You Tie! Rock and Rock!"
-        console.log(outcome)
+        result.textContent = "Tie! Rock and Rock"
         return
     }
     if (playerSelection == "rock" && computerSelection == "paper") {
-        outcome = "You lose! Paper beats Rock!"
-        computerScore ++
-        console.log(outcome)
+        result.textContent = "You lose! Paper beats Rock!"
+        pcScore.textContent = ++computerScore
         return
     }
     if (playerSelection == "rock" && computerSelection == "scissors") {
-        outcome = "You win! Rock beats Scissors!"
+        result.textContent = "You win! Rock beats Scissors!"
         playerScore ++
-        console.log(outcome)
         return
     }
     if (playerSelection == "paper" && computerSelection == "paper") {
-        outcome = "You Tie! Paper and Paper!"
-        console.log(outcome)
+        result.textContent = "You Tie! Paper and Paper!"
         return
     }
     if (playerSelection == "paper" && computerSelection == "rock") {
-        outcome = "You win! Paper beats Rock!"
+        result.textContent = "You win! Paper beats Rock!"
         playerScore ++
-        console.log(outcome)
         return
     }
     if (playerSelection == "paper" && computerSelection == "scissors") {
-        outcome = "You lose! Scissors beats Paper!"
-        computerScore ++
-        console.log(outcome)
+        result.textContent = "You lose! Scissors beats Paper!"
+        pcScore.textContent = ++computerScore
         return
     }
     if (playerSelection == "scissors" && computerSelection == "scissors") {
-        outcome = "You Tie! Scissors and Scissors!"
-        console.log(outcome)
+        result.textContent = "You Tie! Scissors and Scissors!"
         return
     }
     if (playerSelection == "scissors" && computerSelection == "rock") {
-        outcome = "You lose! Rock beats Scissors!"
-        computerScore ++
-        console.log(outcome)
+        result.textContent = "You lose! Rock beats Scissors!"
+        pcScore.textContent = ++computerScore
         return
     }
     if (playerSelection == "scissors" && computerSelection == "paper") {
-        outcome = "You win! Scissors beats Paper!"
+        result.textContent = "You win! Scissors beats Paper!"
         playerScore ++
-        console.log(outcome)
         return
     }
 
