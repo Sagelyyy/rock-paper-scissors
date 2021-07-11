@@ -12,12 +12,12 @@ container.appendChild(gameInfo);
 const title = document.createElement('h1');
 title.style.fontWeight = 'strong';
 title.style.textAlign = 'center';
-title.textContent = "Man vs Computer."
+title.textContent = "Human vs Computer."
 
 const result = document.createElement('h2');
 result.style.fontWeight = 'strong';
 result.style.textAlign = 'center';
-result.textContent = ""
+result.textContent = "First to 5 wins!"
 
 const humanScore = document.createElement('p');
 humanScore.style.position = 'absolute';
@@ -35,6 +35,28 @@ pcScore.style.paddingRight = '5%';
 pcScore.style.fontSize = '86px';
 pcScore.textContent = computerScore
 
+const pcTXT = document.createElement('p');
+pcTXT.style.position = 'absolute';
+pcTXT.style.right = '90px'
+pcTXT.style.top = '-65px'
+pcTXT.style.fontWeight = 'strong';
+pcTXT.style.paddingRight = '5%';
+pcTXT.style.fontSize = '90px';
+pcTXT.style.color = 'salmon';
+pcTXT.style.textDecoration = 'underline';
+pcTXT.textContent = 'PC'
+
+const youTxt = document.createElement('p');
+youTxt.style.position = 'absolute';
+youTxt.style.left = '140px'
+youTxt.style.top = '-65px'
+youTxt.style.fontWeight = 'strong';
+youTxt.style.paddingRight = '5%';
+youTxt.style.fontSize = '90px';
+youTxt.style.color = 'lightblue';
+youTxt.style.textDecoration = 'underline';
+youTxt.textContent = 'YOU'
+
 const retry = document.createElement('button');
 retry.classList.add('retry')
 retry.style.position = 'absolute';
@@ -46,7 +68,8 @@ retry.style.fontSize = '86px';
 retry.style.height = '100px'
 retry.textContent = 'New game?'
 
-
+gameInfo.appendChild(pcTXT)
+gameInfo.appendChild(youTxt)
 gameInfo.appendChild(humanScore)
 gameInfo.appendChild(pcScore)
 gameInfo.appendChild(title)
@@ -93,7 +116,8 @@ function getComputerChoice(){
 function createRetryButton(){
     const retryBtn = document.querySelector('.retry');
     retryBtn.addEventListener('click', () => {
-        newGame(), playerScore = 0, computerScore = 0
+        newGame(), playerScore = 0, computerScore = 0,
+        result.textContent = ""
     });
 }
 
